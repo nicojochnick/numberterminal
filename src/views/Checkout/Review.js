@@ -5,6 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import Paper from "@material-ui/core/Paper/Paper";
 
 const products = [
     { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
@@ -31,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
     title: {
         marginTop: theme.spacing(2),
     },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
 }));
 
 export default function Review() {
@@ -38,6 +44,9 @@ export default function Review() {
 
     return (
         <React.Fragment>
+
+            <Paper style = {{boxShadow: "0px 1px 6px #919191", padding: 20}} className={classes.paper}>
+
             <Typography variant="h6" gutterBottom>
                 Order summary
             </Typography>
@@ -81,6 +90,7 @@ export default function Review() {
                     </Grid>
                 </Grid>
             </Grid>
+            </Paper>
         </React.Fragment>
     );
 }

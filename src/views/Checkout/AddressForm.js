@@ -4,10 +4,26 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Paper from "@material-ui/core/Paper/Paper";
+import { makeStyles } from '@material-ui/core/styles';
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+}));
 
 export default function AddressForm() {
+    const classes = useStyles();
+
     return (
         <React.Fragment>
+            <Paper style = {{boxShadow: "0px 1px 6px #919191", padding: 20}} className={classes.paper}>
+
             <Typography variant="h6" gutterBottom>
                 Shipping address
             </Typography>
@@ -91,6 +107,7 @@ export default function AddressForm() {
                     />
                 </Grid>
             </Grid>
+            </Paper>
         </React.Fragment>
     );
 }

@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import ForwardPlans from "./ForwardPlans";
 
 function Copyright() {
     return (
@@ -33,26 +34,30 @@ const useStyles = makeStyles((theme) => ({
     },
     layout: {
         width: 'auto',
+        background: '#F4F4F4 ',
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2),
         [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-            width: 600,
+            width: 900,
             marginLeft: 'auto',
             marginRight: 'auto',
         },
     },
     paper: {
         marginTop: theme.spacing(3),
+        background:'#F4F4F4',
         marginBottom: theme.spacing(3),
-        padding: theme.spacing(2),
-        [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+        padding: theme.spacing(5),
+        [theme.breakpoints.up(800 + theme.spacing(3) * 2)]: {
             marginTop: theme.spacing(6),
             marginBottom: theme.spacing(6),
-            padding: theme.spacing(3),
+            padding: theme.spacing(10),
         },
     },
     stepper: {
         padding: theme.spacing(3, 0, 5),
+        background: '#F4F4F4 ',
+
     },
     buttons: {
         display: 'flex',
@@ -64,16 +69,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ['Choose a Plan', 'Account Information', 'Porting Information', 'Place Order'];
 
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return <AddressForm />;
+            return <ForwardPlans/>;
         case 1:
-            return <PaymentForm />;
+            return <AddressForm />;
         case 2:
-            return <Review />;
+            return <PaymentForm/>;
+        case 3:
+            return<Review/>;
+
         default:
             throw new Error('Unknown step');
     }
@@ -92,26 +100,25 @@ export default function Checkout() {
     };
 
     return (
-        <React.Fragment>
+        <React.Fragment style = {{background: 'white'}}>
             <CssBaseline />
-            <AppBar position="absolute" color="default" className={classes.appBar}>
+            <AppBar position="absolute" color="white" className={classes.appBar}>
                 <Toolbar>
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Company name
+                    <Typography style = {{fontFamily: 'Rubik', fontWeight: 500}} variant="h6" color="inherit" noWrap>
+                        Community Phone
                     </Typography>
                 </Toolbar>
             </AppBar>
             <main className={classes.layout}>
-                <Paper className={classes.paper}>
-                    <Typography component="h1" variant="h4" align="center">
-                        Checkout
+                <Paper style={{boxShadow: "0px 0px 0px #919191", }} className={classes.paper}>
+                    <Typography style = {{fontFamily: 'Rubik', fontWeight: 500}} component="h1" variant="h4" align="center">
+                        Self-Transfer
                     </Typography>
                     <Stepper activeStep={activeStep} className={classes.stepper}>
                         {steps.map((label) => (
                             <Step key={label}>
-                                <StepLabel>{label}</StepLabel>
-                            </Step>
-                        ))}
+                                <StepLabel style = {{fontFamily: 'Rubik', fontWeight: 400}}> {label}</StepLabel>
+                            </Step>))}
                     </Stepper>
                     <React.Fragment>
                         {activeStep === steps.length ? (
