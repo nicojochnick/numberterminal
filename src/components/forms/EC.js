@@ -8,7 +8,6 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -24,13 +23,10 @@ export default function EC() {
             <div>
                 <Paper
                     style={{boxShadow: "0px 1px 25px #E0E0E0", minWidth: 150, marginTop: 30, borderRadius: 7,  display: 'flex', flexDirection: 'row'}}
-                    variant="outlined"
-                >
+                    variant="outlined">
                     <form className={classes.root} noValidate autoComplete="off">
-
-                    <TextField id="standard-basic" label="1-888-888-8888" />
+                    <TextField id="standard-basic" label="Landline Numbers" />
                     </form>
-
                     <Button variant="contained" color="primary">
                         Check
                     </Button>

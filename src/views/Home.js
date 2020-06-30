@@ -10,10 +10,9 @@ import 'fontsource-roboto';
 import Grid from '@material-ui/core/Grid';
 import SimpleTabs from "../components/menu/SimpleTabs";
 import EC from "../components/forms/EC";
-
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
+import  CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -39,13 +38,13 @@ export default function Home() {
                         <Container maxWidth="lg">
                             <Grid container spacing ={3}>
                             <Grid item xs={6}>
-                                <Typography component="h2" variant="h2" align="left" color="textPrimary" gutterBottom>
+                                <Typography style = {{fontFamily: 'Rubik'}} component="h2" variant="h2" align="left" color="textPrimary" gutterBottom>
                                     Make Your Landline Mobile
                                 </Typography>
                                 <div className={classes.heroButtons}>
                                     <Grid container spacing={2} justify="left">
                                         <Grid item>
-                                            <Typography gutterBottom variant="h5" component="h2">
+                                            <Typography style = {{fontFamily: 'Rubik'}} gutterBottom variant="h5" component="h2">
                                                 Check if my number is eligible
                                             </Typography>
                                             <EC/>

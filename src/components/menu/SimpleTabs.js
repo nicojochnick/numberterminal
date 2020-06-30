@@ -34,8 +34,7 @@ export default function ButtonAppBar() {
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon style = {{color:'black'}} />
                     </IconButton>
-                    <img src="logo.png" alt="logo" className={classes.logo} />
-                    <Button  component={ Link } to="/plans" style={{ marginRight: 16, fontSize: 20 }} color="black">Plans</Button>
+                    <Button  component={ Link } to="/plans" style={{ marginRight: 16, fontSize: 20, fontFamily: 'Rubik'}} color="black">Plans</Button>
                     <Button component={ Link } to="/aboutus" style={{ marginRight: 16, fontSize: 20}} color="black">About Us</Button>
                 </Toolbar>
             </AppBar>
