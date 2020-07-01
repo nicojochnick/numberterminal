@@ -48,7 +48,7 @@ export default function Review() {
             <Paper style = {{boxShadow: "0px 1px 6px #919191", padding: 20}} className={classes.paper}>
 
             <Typography variant="h6" gutterBottom>
-                Order summary
+                Order Summary
             </Typography>
             <List disablePadding>
                 {products.map((product) => (

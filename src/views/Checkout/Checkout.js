@@ -15,6 +15,9 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ForwardPlans from "./ForwardPlans";
 import PortingForm from "./PortingForm";
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import {CardElement, ElementsConsumer} from '@stripe/react-stripe-js';
 
 
 const steps = ['Choose a Plan', 'Account Information', 'Porting Information', 'Place Order'];
@@ -44,6 +47,9 @@ function getStepContent(step) {
             throw new Error('Unknown step');
     }
 }
+const stripePromise = loadStripe('pk_live_7QYxMEez6BUeoWDxK1QcH0u800zHhprByU');
+console.log(stripePromise)
+
 class Checkout extends React.Component {
     constructor(props) {
         super(props);
@@ -98,7 +104,6 @@ class Checkout extends React.Component {
             case 3:
                 return <PaymentForm
                     addInfo={this.addInfo}
-
                 />;
             case 4:
                 return<Review
@@ -107,9 +112,7 @@ class Checkout extends React.Component {
             default:
                 throw new Error('Unknown step');
         }
-    }
-
-
+    };
 
     addInfo(text, type) {
         text = text.target.value;
@@ -164,6 +167,35 @@ class Checkout extends React.Component {
 
     }
 
+    handleSubmit = async (event) => {
+        // Block native form submission.
+        event.preventDefault();
+
+        const {stripe, elements} = this.props;
+
+        if (!stripe || !elements) {
+            // Stripe.js has not loaded yet. Make sure to disable
+            // form submission until Stripe.js has loaded.
+            return;
+        }
+
+        // Get a reference to a mounted CardElement. Elements knows how
+        // to find your CardElement because there can only ever be one of
+        // each type of element.
+        const cardElement = elements.getElement(CardElement);
+
+        const {error, paymentMethod} = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+        });
+
+        if (error) {
+            console.log('[error]', error);
+        } else {
+            console.log('[PaymentMethod]', paymentMethod);
+        }
+    };
+
     handleNext(){
         this.setState({
            activeStep: this.state.activeStep + 1,
@@ -217,7 +249,10 @@ class Checkout extends React.Component {
                                 </React.Fragment>
                             ) : (
                                 <React.Fragment>
+                                    <Elements stripe={stripePromise}>
                                     {this.getStepContent(this.state.activeStep)}
+                                    </Elements>
+
                                     <div className={classes.buttons}>
                                         {this.state.activeStep !== 0 && (
                                             <Button onClick={this.handleBack} className={classes.button}>
