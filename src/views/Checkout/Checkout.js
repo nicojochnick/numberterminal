@@ -14,6 +14,7 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ForwardPlans from "./ForwardPlans";
+import PortingForm from "./PortingForm";
 
 function Copyright() {
     return (
@@ -78,10 +79,11 @@ function getStepContent(step) {
         case 1:
             return <AddressForm />;
         case 2:
-            return <PaymentForm/>;
+            return<PortingForm/>;
         case 3:
+            return <PaymentForm/>;
+        case 4:
             return<Review/>;
-
         default:
             throw new Error('Unknown step');
     }

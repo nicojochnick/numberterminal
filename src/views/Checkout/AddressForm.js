@@ -25,7 +25,7 @@ export default function AddressForm() {
             <Paper style = {{boxShadow: "0px 1px 6px #919191", padding: 20}} className={classes.paper}>
 
             <Typography variant="h6" gutterBottom>
-                Shipping address
+                Current Carrier Information
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
@@ -33,7 +33,7 @@ export default function AddressForm() {
                         required
                         id="firstName"
                         name="firstName"
-                        label="First name"
+                        label="Owners First Name"
                         fullWidth
                         autoComplete="given-name"
                     />
@@ -43,7 +43,7 @@ export default function AddressForm() {
                         required
                         id="lastName"
                         name="lastName"
-                        label="Last name"
+                        label="Owners Last Name"
                         fullWidth
                         autoComplete="family-name"
                     />
@@ -53,18 +53,9 @@ export default function AddressForm() {
                         required
                         id="address1"
                         name="address1"
-                        label="Address line 1"
+                        label="Business or Home Address"
                         fullWidth
                         autoComplete="shipping address-line1"
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        id="address2"
-                        name="address2"
-                        label="Address line 2"
-                        fullWidth
-                        autoComplete="shipping address-line2"
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>

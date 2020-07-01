@@ -54,12 +54,11 @@ export default function PaymentForm() {
                         autoComplete="cc-csc"
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <FormControlLabel
-                        control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-                        label="Remember credit card details for next time"
-                    />
-                </Grid>
+                <div style = {{margin: 20}}>
+                    <Typography style={{ textAlign: 'center', fontFamily: 'Rubik', fontWieght: 300, fontSize: 17}} variant="h7" gutterBottom>
+                        All Plans Come Backed with a 30-day Money Back Guarantee.
+                    </Typography>
+                </div>
             </Grid>
             </Paper>
         </React.Fragment>
