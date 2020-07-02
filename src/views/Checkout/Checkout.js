@@ -15,40 +15,11 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import ForwardPlans from "./ForwardPlans";
 import PortingForm from "./PortingForm";
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
-import {CardElement, ElementsConsumer} from '@stripe/react-stripe-js';
+
 
 
 const steps = ['Choose a Plan', 'Account Information', 'Porting Information', 'Place Order'];
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return <ForwardPlans
 
-            />;
-        case 1:
-            return <AddressForm
-
-            />;
-        case 2:
-            return<PortingForm
-
-            />;
-        case 3:
-            return <PaymentForm
-
-            />;
-        case 4:
-            return<Review
-
-            />;
-        default:
-            throw new Error('Unknown step');
-    }
-}
-const stripePromise = loadStripe('pk_live_7QYxMEez6BUeoWDxK1QcH0u800zHhprByU');
-console.log(stripePromise)
 
 class Checkout extends React.Component {
     constructor(props) {
@@ -167,35 +138,6 @@ class Checkout extends React.Component {
 
     }
 
-    handleSubmit = async (event) => {
-        // Block native form submission.
-        event.preventDefault();
-
-        const {stripe, elements} = this.props;
-
-        if (!stripe || !elements) {
-            // Stripe.js has not loaded yet. Make sure to disable
-            // form submission until Stripe.js has loaded.
-            return;
-        }
-
-        // Get a reference to a mounted CardElement. Elements knows how
-        // to find your CardElement because there can only ever be one of
-        // each type of element.
-        const cardElement = elements.getElement(CardElement);
-
-        const {error, paymentMethod} = await stripe.createPaymentMethod({
-            type: 'card',
-            card: cardElement,
-        });
-
-        if (error) {
-            console.log('[error]', error);
-        } else {
-            console.log('[PaymentMethod]', paymentMethod);
-        }
-    };
-
     handleNext(){
         this.setState({
            activeStep: this.state.activeStep + 1,
@@ -237,8 +179,9 @@ class Checkout extends React.Component {
                                 </Step>))}
                         </Stepper>
                         <React.Fragment>
-                            {this.state.activeStep === steps.length ? (
+                            {this.state.activeStep === steps.length-1? (
                                 <React.Fragment>
+                                    <PaymentForm/>
                                     <Typography variant="h5" gutterBottom>
                                         Thank you for your order.
                                     </Typography>
@@ -249,9 +192,7 @@ class Checkout extends React.Component {
                                 </React.Fragment>
                             ) : (
                                 <React.Fragment>
-                                    <Elements stripe={stripePromise}>
                                     {this.getStepContent(this.state.activeStep)}
-                                    </Elements>
 
                                     <div className={classes.buttons}>
                                         {this.state.activeStep !== 0 && (
